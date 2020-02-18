@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>savi_ros_demo</name>
+  <name>savi_airsim_drone</name>
   <version>0.0.0</version>
-  <description>The savi_ros_demo package</description>
+  <description>The savi_airsim_drone package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
