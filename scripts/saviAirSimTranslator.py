@@ -19,7 +19,7 @@ def connectToAirSim():
 
 def syncPrint(message, sem):
     sem.acquire()
-    print(message)
+    rospy.loginfo(message)
     sem.release()
 
 def perceptionHandler(client,simulatorSemaphore,consoleSemaphore):
@@ -47,15 +47,26 @@ def perceptionHandler(client,simulatorSemaphore,consoleSemaphore):
         pub.publish(perception)
         rate.sleep()
 
+def actionReceiver(data, args):
+    (client,simulatorSemaphore,consoleSemaphore) = args
 
-def actionHandler(client,simulatorSemaphore,consoleSemaphore):
-    syncPrint("Action handler launched", consoleSemaphore)
+    message = str(rospy.get_caller_id() + 'I heard ' + str(data.data))
+    syncPrint(message, consoleSemaphore)
     
     simulatorSemaphore.acquire()
     client.takeoffAsync().join()
     simulatorSemaphore.release()
     
     syncPrint("Takeoff command sent", consoleSemaphore)
+
+def actionHandler(client,simulatorSemaphore,consoleSemaphore):
+    syncPrint("Action handler launched", consoleSemaphore)
+   
+   
+    rospy.Subscriber('actions', String, actionReceiver, (client,simulatorSemaphore,consoleSemaphore))
+
+    # spin() simply keeps python from exiting until this node is stopped
+    rospy.spin()
 
 def saviAirSimTranslator():
     
