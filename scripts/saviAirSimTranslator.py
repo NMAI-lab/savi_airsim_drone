@@ -40,6 +40,11 @@ def perceptionHandler(client,simulatorSemaphore,consoleSemaphore):
         angularVelocity = "angularVelocity("+str(imu_data.angular_velocity.x_val)+","+str(imu_data.angular_velocity.y_val)+","+str(imu_data.angular_velocity.z_val)+","+str(imu_data.time_stamp)+")"
         linearAcceleration = "linearAcceleration("+str(imu_data.linear_acceleration.x_val)+","+str(imu_data.linear_acceleration.y_val)+","+str(imu_data.linear_acceleration.z_val)+","+str(imu_data.time_stamp)+")"
         orientation = "orientation("+str(imu_data.orientation.w_val)+","+str(imu_data.orientation.x_val)+","+str(imu_data.orientation.y_val)+","+str(imu_data.orientation.z_val)+","+str(imu_data.time_stamp)+")"
+        
+        #angularVelocity = "angularVelocity(1,1,1,1)"
+        #linearAcceleration = "linearAcceleration(1,1,1,1)"
+        #orientation = "orientation(1,1,1,1,1)"
+        
         perception = angularVelocity + " " + linearAcceleration + " " + orientation
         
         # Publish the perception
