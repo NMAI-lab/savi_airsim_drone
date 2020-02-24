@@ -1,8 +1,6 @@
 /**
  * Demo BDI program for AirSim car
- * This example BDI program performs the action
- * 'throttle(5)' whenever it receives a perception 
- * of the format 'speed(1234)'.
+ * This example BDI program.
  * @author	Patrick Gavigan
  * @date	17 Feb 2020
  */
@@ -12,8 +10,8 @@
 +!fly
 	:	angularVelocity(_,_,_,_) &
         linearAcceleration(_,_,_,_) &
-		orientation(_,_,_,_,_) &
-	<-	takeoff();
+		orientation(_,_,_,_,_)
+	<-	takeoff(true);
 		!fly.
 		
 +!fly
